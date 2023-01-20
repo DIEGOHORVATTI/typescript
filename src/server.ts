@@ -22,3 +22,24 @@ const ex_4_1: Array<string> = ['Diego', 'Horvatti']
 const ex_4_2: string[] = ['Diego', 'Horvatti']
 const ex_4_3: string[] = new Array('Diego', 'Horvatti')
 res(ex_4_1, ex_4_2, ex_4_3)
+
+//==> tipando tupla
+const tuple: [string, number, string, number] = ['hello', 1, 'world', 2]
+for (let i = 0; i < tuple.length; i++) {
+  console.log(tuple[i])
+}
+
+//==> tipando enum
+enum Color {
+  Red,
+  Green,
+  Blue,
+  Yellow
+}
+enum AnotherColor {
+  Red = 1,
+  Green = 2,
+  Blue = 4,
+  Yellow
+}
+res(Color, AnotherColor)
