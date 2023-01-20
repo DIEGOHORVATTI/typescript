@@ -1,35 +1,5 @@
-import chalk from 'chalk'
-
-console.clear()
-
-//==> Tipando função title
-function Title(...parms: any) {
-  console.log('\n')
-  console.log(chalk.white.bgCyan.bold(` ${parms} `))
-}
-
-//==> Tipando função corpo
-function Body(...parms: any) {
-  console.log(parms)
-}
-
-Title('Tipando string')
-const ex_1: string = 'Diego Horvatti'
-Body(ex_1)
-
-Title('Tipando number')
-const ex_2: string = 'Diego Horvatti'
-Body(ex_2)
-
-Title('Tipando boolean')
-const ex_3: boolean = true
-Body(ex_3)
-
-Title('Tipando arrays')
-const ex_4_1: Array<string> = ['Diego', 'Horvatti']
-const ex_4_2: string[] = ['Diego', 'Horvatti']
-const ex_4_3: string[] = new Array('Diego', 'Horvatti')
-Body(ex_4_1, ex_4_2, ex_4_3)
+import './global'
+import { Body, Title } from './function'
 
 Title('Tipando tupla simple')
 const tuple_1: [string, number, string, number] = ['hello', 1, 'world', 2]
@@ -66,27 +36,11 @@ function criarPessoa(...nome: Nome) {
 }
 Body(criarPessoa('Diego', 'solza', 'Horvatti'))
 
-/* Title('Tipando tupla com labels')
-const tuple_3: [
+Title('Tipando tupla com labels')
+const tuple_4: [
   nome: string,
   oculpacao: string,
   empresa: string,
   idade: number
 ] = ['Diego Horvatti', 'Estudante - Estágiario', 'Leadeasy', 20]
-Body(tuple_3)
-
-Title('Tipando enum')
-enum Color {
-  Red,
-  Green,
-  Blue,
-  Yellow
-}
-enum AnotherColor {
-  Red = 1,
-  Green = 2,
-  Blue = 4,
-  Yellow
-}
-Body(Color, AnotherColor, AnotherColor.Blue)
- */
+Body(tuple_4)

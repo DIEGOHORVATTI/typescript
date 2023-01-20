@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "dev": "tsnd --inspect --transpile-only --respawn ./src/server.ts",
+    "dev": "tsnd --inspect --transpile-only --respawn",
     "start": "node ./dist/server.js",
     "build": "tsc"
   },
