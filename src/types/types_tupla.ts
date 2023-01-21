@@ -1,5 +1,5 @@
 import './global'
-import { Body, Title } from './function'
+import { Body, Title } from '../function'
 
 Title('Tipando tupla simple')
 const tuple_1: [string, number, string, number] = ['hello', 1, 'world', 2]

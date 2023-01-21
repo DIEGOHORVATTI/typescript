@@ -1,5 +1,5 @@
-import './global'
-import { Body, Title } from './function'
+import '../global'
+import { Body, Title } from '../function'
 
 Title('Types Any')
 const parametro_1 = (parm: any) => {

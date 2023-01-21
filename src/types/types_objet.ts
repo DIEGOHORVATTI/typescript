@@ -1,5 +1,5 @@
 import './global'
-import { Body, Title } from './function'
+import { Body, Title } from '../function'
 
 Title('Type Object')
 /* 
@@ -167,3 +167,4 @@ function acessarSistema<T>(usuario: T): T {
 
 Body(acessarSistema<Usuario>(usuario))
 Body(acessarSistema<Admin>(admin))
+Body('ola@')
