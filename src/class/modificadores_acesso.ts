@@ -24,11 +24,13 @@ class Estudante_2 {
       (this.nomeEstudante = NomeEstudante)
   }
 
-  retornarDadosEstudante() {
-    return Body(
-      `Código do estudante...: ${this.codigoEstudante}
-      Nome do estudante.....: ${this.nomeEstudante}`
-    )
+  retornaNome(): string {
+    return this.nomeEstudante
+  }
+
+  retornarDadosEstudante(): void {
+    Body(`Nome do estudante.....: ${this.nomeEstudante}`)
+    Body(`Código do estudante...: ${this.codigoEstudante}`)
   }
 }
 const estudante_2 = new Estudante_2(19879, 'João')
@@ -36,11 +38,9 @@ estudante_2.retornarDadosEstudante()
 
 Title('Extends Estudate_2')
 class Estudante_3 extends Estudante_2 {
-  private curso: string
-
   constructor(
-    public CodigoEstudante: number,
-    private NomeEstudante: string,
+    CodigoEstudante: number,
+    NomeEstudante: string,
     private Curso?: string
   ) {
     super(CodigoEstudante, NomeEstudante)
@@ -48,14 +48,14 @@ class Estudante_3 extends Estudante_2 {
       this.Curso = Curso
     }
   }
-
   retornarDadosEstudante(): void {
-    return Body(
-      `Código do estudante...: ${this.codigoEstudante}
-        Nome do estudante.....: ${this.NomeEstudante}`,
-      this.Curso === undefined ? `` : `Nome do curso.........: ${this.Curso}`
+    Body(
+      `Código: ${this.codigoEstudante}; Nome: ${this.retornaNome()}; Curso: ${
+        this.Curso
+      }`
     )
   }
 }
+
 const estudante_3 = new Estudante_3(19879, 'João', 'Sistemas')
 estudante_3.retornarDadosEstudante()
