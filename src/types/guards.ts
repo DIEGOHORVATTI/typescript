@@ -1,6 +1,10 @@
 import '../global'
 import { Body, Title } from '../function'
 
+/*
+  verificação de tipo
+*/
+
 Title('Type guards: typeof')
 type alfaNumero = string | number
 

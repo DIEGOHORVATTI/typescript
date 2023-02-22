@@ -1,6 +1,10 @@
 import '../global'
 import { Body, Title } from '../function'
 
+/*
+  conversão de tipos
+*/
+
 Title('Type casting, ex - 1')
 const nome: unknown = 'Diego'
 Body(typeof nome)

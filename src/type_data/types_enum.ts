@@ -1,5 +1,5 @@
 import './global'
-import { Body, Title } from './function'
+import { Body, Title } from '../function'
 
 Title('Numeric Enum --> enum')
 enum AnotherColor {

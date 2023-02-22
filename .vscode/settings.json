@@ -1,3 +1,5 @@
 {
-  "code-runner.defaultLanguage": ""
+  "code-runner.defaultLanguage": "",
+  "editor.tabCompletion": "on",
+  "diffEditor.codeLens": true
 }
