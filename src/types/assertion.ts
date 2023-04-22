@@ -22,26 +22,19 @@ Body(descontoFinal)
 
 // ==> Exemplo 02 - Type Assertions
 
-/*type Humano = {
-  nome: string;
-  idade: number;
-  idioma: string;
+type Humano = {
+  nome: string
+  idade: number
+  idioma: string
 }
 const humano = {
   idade: 36,
   idioma: 'Português'
-};
-const humano_02 = humano as Humano;
-console.log(humano_02.nome.toUpperCase());*/
+}
+const humano_02 = humano as Humano
+console.log(humano_02.nome.toUpperCase())
 
-/*type Humano = {
-  nome: string;
-  idade: number;
-  idioma: string;
-}
-const humano = {
-  idade: 36,
-  idioma: 'Português'
-};
-const humano_02: Humano = humano;
-console.log(humano_02.nome.toUpperCase());*/
+/* 
+const humano_03: Humano = humano;
+console.log(humano_03.nome.toUpperCase());
+*/
