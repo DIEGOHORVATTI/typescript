@@ -7,14 +7,18 @@ export type PageTypes = {
   paises: Paises
 }
 
-type Filters<T> = {
+type Filters<T extends PageTypes> = {
   type: keyof T
-  keys: Array<keyof T[T['type']]>
+  keys: Array<T[keyof T]>
 }
 
-const filters: Filters<PageTypes> = {
-  type: 'Carros',
-  keys: ['Ford']
+function createFilters<T extends PageTypes, K extends keyof T>(
+  type: K,
+  keys: Array<T[K]>
+): Filters<T> {
+  return { type, keys }
 }
+
+const filters = createFilters('paises', ['Brasil'])
 
 console.log(filters)
