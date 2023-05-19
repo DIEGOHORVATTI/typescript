@@ -1,4 +1,5 @@
 export {}
+console.clear()
 
 export type ServiceOrdersType = {
   sector?: boolean
@@ -79,7 +80,10 @@ export const createFilters = <T extends PageTypes, K extends keyof T>(
 
 console.log(createFilters('serviceOrdersType', ['client', 'city', 'operator']))
 
-/* {
-  "nameFIltro": "string",
-  "age": "20",
-} */
+/* 
+{
+  "technician": "Array<number>",
+  "type": "'P' | 'F' | 'R'",
+  "sector": "boolean",
+}
+*/
