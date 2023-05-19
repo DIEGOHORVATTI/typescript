@@ -1,8 +1,5 @@
 import chalk from 'chalk'
 
-console.clear()
-console.log(chalk.white.bgGreen.bold(`\n\n\n========================\n\n`))
-
 //==> Tipando função title
 export function Title(...parms: any) {
   console.log('\n')

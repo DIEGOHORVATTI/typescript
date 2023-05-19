@@ -36,14 +36,14 @@ export interface ClientAddress {
   createdAtFormatted?: string
 }
 
-export type PageTypes = {
+export type PagesKeyof = {
   serviceOrdersType: keyof ServiceOrdersType
   clientAddress: keyof ClientAddress
 }
 
-export type Filters<T extends PageTypes> = {
-  type: keyof T
-  keys: Array<T[keyof T]>
+export type PagesTypeof = {
+  serviceOrdersType: ServiceOrdersType
+  clientAddress: ClientAddress
 }
 
 type FieldTypes<T> = {
@@ -58,32 +58,77 @@ type FieldTypes<T> = {
     : never
 }
 
-type KeysOfType<T, TProp> = {
-  [K in keyof T]: T[K] extends TProp ? K : never
-}[keyof T]
-
-type FiltersMap<T extends PageTypes> = {
-  [K in keyof T]: Record<KeysOfType<T[K], string>, FieldTypes<T[K]>>
+export type Filters<T extends PagesKeyof> = {
+  type: keyof T
+  keys: Array<T[keyof T]>
 }
 
-export type CreateFilters<T extends PageTypes> = <K extends keyof T>(
+const getKeysAndTypes = <T>(
+  obj: T
+): Record<keyof T, FieldTypes<T>[keyof T]> => {
+  const result = {} as Record<keyof T, FieldTypes<T>[keyof T]>
+
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      const value = obj[key]
+      const type =
+        typeof value === 'string'
+          ? 'string'
+          : typeof value === 'number'
+          ? 'number'
+          : typeof value === 'boolean'
+          ? 'boolean'
+          : value instanceof Date
+          ? 'date'
+          : 'unknown'
+
+      result[key] = type as FieldTypes<T>[keyof T]
+    }
+  }
+
+  return result
+}
+
+export type CreateFilters<T extends PagesKeyof> = <K extends keyof T>(
   type: K,
   keys: Array<T[K]>
 ) => Filters<T>
 
-export const createFilters = <T extends PageTypes, K extends keyof T>(
-  type: K,
-  keys: Array<T[K]>
+const createFilters = <T extends PagesKeyof, TKey extends keyof T>(
+  type: TKey,
+  keys: Array<T[TKey]>
 ): Filters<T> => {
-  return { type, keys }
+  const filters = {
+    type,
+    keys: [] as Array<T[TKey] & Record<string, FieldTypes<T[TKey]>>>
+  }
+
+  keys.forEach((key) => {
+    const fieldType = getKeysAndTypes(key)
+    filters.keys.push({ [key]: fieldType })
+  })
+
+  return filters
 }
 
-console.log(createFilters('serviceOrdersType', ['client', 'city', 'operator']))
+console.log(
+  createFilters('serviceOrdersType', [
+    'technician',
+    'operator',
+    'operator',
+    'client',
+    'city',
+    'model'
+  ])
+)
 
-/* 
-{
-  "technician": "Array<number>",
-  "type": "'P' | 'F' | 'R'",
-  "sector": "boolean",
-}
-*/
+console.log('------------------------------')
+
+console.log(
+  createFilters('clientAddress', [
+    'complement',
+    'reference',
+    'country',
+    'country'
+  ])
+)
