@@ -68,7 +68,7 @@ export type CreateFilters<T extends PageTypes> = <K extends keyof T>(
     titleFilter: keyof PageTypes
     items: Array<{
       title: string
-      filter: keyof K
+      filter: T[K]
       type: FiltersPage
     }>
   }
@@ -81,3 +81,20 @@ export const createFilters: CreateFilters<PageTypes> = (
   console.log(urlFilters, filters)
   return { urlFilters, filters }
 }
+
+createFilters(
+  {
+    method: 'link',
+    url: '/teste'
+  },
+  {
+    titleFilter: 'serviceOrdersType',
+    items: [
+      {
+        title: 'asd',
+        filter: 'location',
+        type: ' data'
+      }
+    ]
+  }
+)
