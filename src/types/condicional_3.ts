@@ -37,33 +37,33 @@ type ServiceOrdersType = {
 
 type FiltersPage = 'string' | 'number' | ' data' | 'boolean'
 
-export type PageTypes = {
+type PageTypes = {
   serviceOrdersType: keyof ServiceOrdersType
   clientAddress: keyof ClientAddress
 }
 
-export type Filters<T extends PageTypes> = {
+type UrlFilters = {
+  url: `/${string}`
+  method: Method
+  data?: {}
+}
+
+type Filters<T extends PageTypes, K extends keyof T> = {
   filters: [
     {
       titleFilter: keyof T
       items: Array<{
         title: string
-        filter: keyof T[keyof T]
+        filter: T[K]
         type: FiltersPage
       }>
     }
   ]
-  urlFilters: {
-    url: string
-    method: Method
-  }
+  urlFilters: UrlFilters
 }
 
-export type CreateFilters<T extends PageTypes> = <K extends keyof T>(
-  urlFilters: {
-    url: string
-    method: Method
-  },
+type CreateFilters<T extends PageTypes> = <K extends keyof T>(
+  urlFilters: UrlFilters,
   filters: {
     titleFilter: K
     items: Array<{
@@ -72,28 +72,25 @@ export type CreateFilters<T extends PageTypes> = <K extends keyof T>(
       type: FiltersPage
     }>
   }
-) => Filters<T>
+) => Filters<T, K>
 
-export const createFilters: CreateFilters<PageTypes> = (
-  urlFilters,
-  filters
-) => {
-  console.log(urlFilters, filters)
-  return { urlFilters, filters }
-}
+const createFilters: CreateFilters<PageTypes> = (urlFilters, filters) => ({
+  filters: [filters],
+  urlFilters
+})
 
 createFilters(
   {
     method: 'link',
-    url: '/teste'
+    url: '/serviceOrders'
   },
   {
-    titleFilter: 'serviceOrdersType',
+    titleFilter: 'clientAddress',
     items: [
       {
-        title: 'asd',
-        filter: 'serviceExecution',
-        type: ' data'
+        title: 'titulo do painel',
+        filter: 'reference',
+        type: 'number'
       }
     ]
   }
