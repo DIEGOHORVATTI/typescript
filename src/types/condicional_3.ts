@@ -65,7 +65,7 @@ export type CreateFilters<T extends PageTypes> = <K extends keyof T>(
     method: Method
   },
   filters: {
-    titleFilter: keyof PageTypes
+    titleFilter: K
     items: Array<{
       title: string
       filter: T[K]
@@ -92,7 +92,7 @@ createFilters(
     items: [
       {
         title: 'asd',
-        filter: 'location',
+        filter: 'serviceExecution',
         type: ' data'
       }
     ]
